@@ -9,6 +9,8 @@
     "typescript",
     "typescriptreact"
   ],
-  "eslint.enable": true
+  "eslint.enable": true,
+  "files.eol": "\n",
+  "files.insertFinalNewline": false
 }
 

@@ -1,17 +1,17 @@
-import fastify from 'fastify'
-import { db } from './database.js'
+import fastify from "fastify";
+import { db } from "./database.js";
 
-const app = fastify()
+const app = fastify();
 
-app.get('/', async () => {
-  const tables = await db('sqlite_schema').select('*')
-  return tables
-})
+app.get("/", async () => {
+  const tables = await db("sqlite_schema").select("*");
+  return tables;
+});
 
 app
   .listen({
     port: 3333,
   })
   .then(() => {
-    console.log('HTTP server running!')
-  })
+    console.log("HTTP server running!");
+  });
