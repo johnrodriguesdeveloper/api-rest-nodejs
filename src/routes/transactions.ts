@@ -5,21 +5,17 @@ import { randomUUID } from "crypto";
 import { checkSessionIdExists } from "../middlewares/check-session-id-exists.js";
 
 export async function transactionsRoutes(app: FastifyInstance) {
-  app.get(
-    "/",
-    { preHandler: [checkSessionIdExists] },
-    async (request, reply) => {
-      const sessionId = request.cookies.sessionId;
+  app.get("/", { preHandler: [checkSessionIdExists] }, async (request) => {
+    const sessionId = request.cookies.sessionId;
 
-      const transactions = await db("transactions")
-        .where("session_id", sessionId)
-        .select();
+    const transactions = await db("transactions")
+      .where("session_id", sessionId)
+      .select();
 
-      return {
-        transactions,
-      };
-    },
-  );
+    return {
+      transactions,
+    };
+  });
 
   app.get("/:id", { preHandler: [checkSessionIdExists] }, async (request) => {
     const getTransactionParamsSchema = z.object({
